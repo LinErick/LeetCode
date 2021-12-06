@@ -7,11 +7,21 @@ namespace SearchInsertPosition
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            //Console.WriteLine(SearchInsert(new int[] { 1 }, 5));
-            //Console.WriteLine(SearchInsert(new int[] { 1 }, 0));
-            //Console.WriteLine(SearchInsert(new int[] { 1, 3 }, 2));
-            //Console.WriteLine(SearchInsert(new int[] { 1, 3 }, 3));
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();//引用stopwatch物件
+
+            sw.Reset();//碼表歸零
+
+            sw.Start();//碼表開始計時
+
+            Console.WriteLine(SearchInsert(new int[] { 1 }, 5));
+            Console.WriteLine(SearchInsert(new int[] { 1 }, 0));
+            Console.WriteLine(SearchInsert(new int[] { 1, 3 }, 2));
+            Console.WriteLine(SearchInsert(new int[] { 1, 3 }, 3));
             Console.WriteLine(SearchInsert(new int[] { 1, 3, 5, 7, 9, 11 }, 5));
+
+            sw.Stop();//碼錶停止
+
+            Console.WriteLine(sw.Elapsed.TotalMilliseconds.ToString());
         }
         public static int SearchInsert(int[] nums, int target)
         {
