@@ -7,10 +7,13 @@ namespace RemoveDuplicatesFromSortedArray
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");            
+            Console.WriteLine("Hello World!");
+            Program program = new Program();
+            program.RemoveDuplicates(new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 });
+            program.RemoveDuplicates(new int[] { 1, 1, 2 });
         }
 
-        public static int RemoveDuplicates(int[] nums)
+        public int RemoveDuplicates(int[] nums)
         {
             if (nums == null)
                 return 0;
@@ -22,17 +25,13 @@ namespace RemoveDuplicatesFromSortedArray
 
             for (int i = 1; i < nums.Length; i++)
             {
-                if (nums[i] != nums[i - 1])
+                if (nums[result] != nums[i])
                 {
-                    nums[result] = nums[i - 1];
-                    result++;
+                    nums[++result] = nums[i];
                 }
             }
 
-            nums[result] = nums[^1];
-            result++;
-
-            return result;
+            return result++;
         }
     }
 }
