@@ -9,19 +9,16 @@ namespace MergeTwoSortedLists
             Console.WriteLine("Hello World!");
             ListNode list1 = new(1, null);
             ListNode list2 = new(2, null);
-            MergeTwoLists(list1, list2);
+            /*ListNode Test = new();
+            ListNode Node = Test;
+            Node.next = list1;
+            Node = Node.next;
+            Node.next = list2;*/
+
+            MergeTwoLists(null, null);
         }
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
-            if (l1 == null && l2 == null)
-                return null;
-
-            if (l1 == null)
-                return l2;
-
-            if (l2 == null)
-                return l1;
-
             ListNode result = new();
             ListNode count= result;
 
@@ -30,12 +27,12 @@ namespace MergeTwoSortedLists
 
                 if (l1.val > l2.val)
                 {
-                    count.val = l2.val;
+                    count.next = l2;
                     l2 = l2.next;
                 }
                 else
                 {
-                    count.val = l1.val;
+                    count.next = l1;
                     l1 = l1.next;
                 }
                 count = count.next;
@@ -43,19 +40,16 @@ namespace MergeTwoSortedLists
 
             if (l1 != null)
             {
-                count = l1;
+                count.next = l1;
             }
-
-            if (l2 != null)
+            else
             {
-                count.val= l2.val;
+                count.next = l2;
             }
-                
 
-            return result;
+            return result.next;
         }
     }
-
 
     public class ListNode
     {
