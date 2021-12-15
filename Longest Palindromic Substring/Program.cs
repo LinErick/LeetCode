@@ -10,34 +10,38 @@ namespace Longest_Palindromic_Substring
             Console.WriteLine("Hello World!");
 
             Program program = new();
-            Console.WriteLine(program.LongestPalindrome("d123321abc"));
-            Console.WriteLine(program.LongestPalindrome("aa"));
-            Console.WriteLine(program.LongestPalindrome("b"));
-            Console.WriteLine(program.LongestPalindrome("bc"));
-            Console.WriteLine(program.LongestPalindrome("aacabdkacaa"));
+            //Console.WriteLine(program.LongestPalindrome("d123321abc"));
+            //Console.WriteLine(program.LongestPalindrome("aa"));
+            //Console.WriteLine(program.LongestPalindrome("b"));
+            //Console.WriteLine(program.LongestPalindrome("bc"));
+            //Console.WriteLine(program.LongestPalindrome("aacabdkacaa"));
+            Console.WriteLine(program.LongestPalindrome("bacabab"));
             //b1234554321bbaaddd
         }
         public string LongestPalindrome(string s)
         {
-            string result = s[0].ToString();
+            int resultStart = 0, resultLength = 1;
 
-            for (int i = 0; i < s.Length; i++)
+            for (int leftStart = 0; leftStart < s.Length; leftStart++)
             {
-                for (int j = s.Length - 1; j > i; j--)
+                for (int rightEnd = s.Length - 1; leftStart < rightEnd; rightEnd--)
                 {
-                    int left = i;
-                    int right = j;
+                    int left = leftStart;
+                    int right = rightEnd;
+                    int stringLength = right - left + 1;
+
+                    if (resultLength >= stringLength)
+                    {
+                        break;
+                    }
+
                     while (s[left] == s[right])
                     {
                         if (left >= right)
                         {
-                            if(result.Length < j - i + 1)
-                            {
-                                result = s.Substring(i, j - i + 1);
-                                break;
-                            }
-                                
-
+                            resultStart = leftStart;
+                            resultLength = stringLength;
+                            break;
                         }
                         left++;
                         right--;
@@ -45,7 +49,7 @@ namespace Longest_Palindromic_Substring
                 }
             }
 
-            return result;
+            return s.Substring(resultStart, resultLength);
         }
     }
 }
